@@ -84,6 +84,7 @@ header {
   .nav__links li.responsive {
     display: block;
     align-items: center;
+    margin-bottom: 10px;
   }
 }
 .nav__links li a {
@@ -120,7 +121,8 @@ header {
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.33);
 }
-.logo img {
+.logo img,
+.logo embed {
   width: 280px;
   padding: 10px;
   border: 3px solid rgba(35, 89, 156, 0.78);
@@ -145,30 +147,45 @@ header {
 }
 .container {
   display: grid;
+  display: -ms-grid;
   grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 0.2fr 1fr 0.5fr 1fr 0.2fr;
   color: white;
   grid-column-gap: 10px;
   justify-items: center;
+  -ms-grid-column-align: center;
   align-items: center;
 }
 @media only screen and (max-width: 1024px) {
   .container {
     display: grid;
+    display: -ms-grid;
     grid-template-columns: 1fr;
+    -ms-grid-columns: 1fr;
   }
 }
 .profit {
+  -ms-grid-column: 4;
   font-family: "MuseoSansCyrl100", serif;
   font-size: 18px;
   text-transform: lowercase;
   display: grid;
+  display: -ms-grid;
+  -ms-grid-column-align: center;
   grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 2em 10fr 1em 10fr 2em;
   grid-auto-rows: minmax(100px, 180px);
   grid-auto-columns: minmax(100px, 180px);
   grid-column-gap: 10px;
   grid-row-gap: 1em;
   justify-items: center;
   align-items: center;
+}
+@media only screen and (max-width: 1024px) {
+  .profit {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
+  }
 }
 .profit > div {
   cursor: pointer;
@@ -196,6 +213,22 @@ header {
     min-height: 120px;
     font-size: 12px;
   }
+}
+.profit > div:nth-child(1) {
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+}
+.profit > div:nth-child(2) {
+  -ms-grid-column: 4;
+  -ms-grid-row: 1;
+}
+.profit > div:nth-child(3) {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+}
+.profit > div:nth-child(4) {
+  -ms-grid-column: 4;
+  -ms-grid-row: 2;
 }
 .profit > div:before {
   position: absolute;
@@ -228,10 +261,11 @@ header {
   }
 }
 .title {
+  -ms-grid-column: 2;
   display: flex;
+  -ms-flex-align: start;
   flex-direction: column;
   align-items: flex-start;
-  gap: 50px;
   font-family: "MuseoSansCyrl100", serif;
   font-size: 28px;
   text-transform: lowercase;
@@ -242,22 +276,39 @@ header {
     align-items: center;
     text-align: center;
     font-size: 32px;
+    -ms-grid-column: 1;
   }
 }
-.title div div:first-child {
+.title > div {
+  margin-top: 40px;
+}
+.title > div div:first-child {
   font-family: "MuseoSansCyrl700", serif;
   text-transform: uppercase;
   font-size: 60px;
+  min-height: 100px;
+  text-align: center;
+  display: inline;
+  align-items: center;
 }
 @media only screen and (max-width: 1024px) {
-  .title div div:first-child {
+  .title > div div:first-child {
     font-size: 32px;
   }
+}
+.title > div div:last-child {
+  margin-top: 30px;
 }
 .title div div {
   background: linear-gradient(135deg, white 43%, #bc4a0d 56%, #910505);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .title div div {
+    color: #bc4a0d;
+    background: rgba(255, 255, 255, 0);
+  }
 }
 @media only screen and (max-width: 1024px) {
   .title div div {
@@ -270,11 +321,11 @@ header {
   min-width: 180px;
   min-height: 35px;
   padding: 5px 15px;
-  color: white;
+  color: white !important;
   border: 2px solid rgba(35, 89, 156, 0.78);
   border-image: conic-gradient(from 45deg, rgba(73, 75, 77, 0.15), rgba(35, 89, 156, 0.78), rgba(73, 75, 77, 0.15));
   border-image-slice: 1;
-  opacity: 0.75;
+  margin-top: 60px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -315,7 +366,6 @@ header {
   padding: 12px 0;
   opacity: 1;
   visibility: visible !important;
-  -webkit-transition: opacity 0.7s ease, visibility 0.7s ease;
   transition: opacity 0.7s ease, visibility 0.7s ease;
   pointer-events: none;
   color: white;
@@ -347,7 +397,6 @@ header {
   padding: 12px 0;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: opacity 0.7s ease, visibility 0.7s ease;
   transition: opacity 0.7s ease, visibility 0.7s ease;
   pointer-events: none;
 }
@@ -362,9 +411,7 @@ header {
   transition: width 0.4s;
 }
 .hint-content:after {
-  -webkit-transform-origin: 0 50%;
   transform-origin: 0 50%;
-  -webkit-transform: rotate(-225deg);
   transform: rotate(225deg);
   bottom: 0;
   left: 0;
@@ -374,15 +421,13 @@ header {
   height: 1px;
   position: absolute;
   opacity: 1;
-  -webkit-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease;
   transition-delay: 0s;
-  -webkit-transition-delay: 0s;
 }
 .hint-radius {
   width: 10px;
   height: 10px;
-  border: 1px solid wheat;
+  border: 1px solid rgba(255, 255, 255, 0.33);
   border-radius: 40px;
   bottom: -5px;
   position: inherit;

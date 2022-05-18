@@ -18,11 +18,9 @@ window.addEventListener('resize', e => {
     line = document.querySelector('.hint');
     extra_line = document.querySelector('.hint-content');
     console.log(line.style.cssText)
-
     line.style.setProperty('--page_center', document.documentElement.scrollWidth / 2 - extra_line.getBoundingClientRect().x+10 + 'px');
-
 })
-// console.log(btn.getBoundingClientRect())
+
 let menu = document.querySelector('.nav__links li:first-child');
 
 menu.addEventListener('click', e => {
